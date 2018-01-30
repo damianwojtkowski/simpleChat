@@ -1,0 +1,24 @@
+{
+  "name": "simple_chat",
+  "version": "1.0.0",
+  "description": "Simple chat to talk each other",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/damianwojtkowski/simple_chat.git"
+  },
+  "author": "Damian Wojtkowski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/damianwojtkowski/simple_chat/issues"
+  },
+  "homepage": "https://github.com/damianwojtkowski/simple_chat#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "socket.io": "^2.0.4"
+  }
+}
