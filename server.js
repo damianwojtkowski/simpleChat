@@ -3,7 +3,9 @@ var express = require('express');
 var app = express();
 
 var http = require('http').Server(app);
-// var io = require('socket.io')(http);
+var io = require('socket.io')(http);
+var users = [];
+var messages = [];
 
 app.use(express.static(__dirname + '/public'));
 
@@ -11,5 +13,14 @@ app.get('/', function (req, res) {
   res.send('index.html');
 });
 
-app.listen(9876);
-console.log('Server is running using port 9876');
+io.on('connection', function (socket) {
+  socket.emit({ messages: messages });
+  socket.emit({ users: users });
+  socket.on('login', function (data) {
+    users.push(data.login);
+  });
+});
+
+http.listen(9876, function () {
+  console.log('Server is running using port 9876');
+});

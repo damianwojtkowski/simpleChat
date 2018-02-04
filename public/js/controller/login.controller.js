@@ -1,9 +1,12 @@
 (function (app) {
   app.controller('loginCtrl', function () {
     var vm = this;
+    vm.isLogged = false;
+
+    var socket = io();
 
     vm.login = function () {
-      console.log(vm.loginName);
+      socket.emit('login', { login: vm.loginName });
     };
   });
 })(app);
