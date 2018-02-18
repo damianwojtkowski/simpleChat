@@ -5,6 +5,7 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var users = [];
+var messages = [];
 
 app.use(express.static(__dirname + '/public'));
 
@@ -17,8 +18,12 @@ io.on('connection', function (socket) {
     socket.emit('init', users);
     users.push(data.login);
     socket.broadcast.emit('newUser', data.login);
-    console.log(users);
   });
+
+  socket.on('newMessage', function (data) {
+    messages.push(data);
+    socket.broadcast.emit('newMessage', data);
+  })
 });
 
 http.listen(9876, function () {

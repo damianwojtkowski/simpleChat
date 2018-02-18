@@ -31,3 +31,23 @@
 .users-panel__title {
     padding-left: 40px;
 }
+.chat-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.chat-content__message {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 0;
+}
+.chat-content__new-message {
+    background-color: #000;
+    border-color: #000;
+    border-bottom-color: #00ff00;
+    color: #00ff00;
+    width: 700px;
+}
+.chat-content__new-message:focus {
+    outline: none;
+}
