@@ -14,10 +14,10 @@ app.get('/', function (req, res) {
 });
 
 io.on('connection', function (socket) {
-  socket.emit({ messages: messages });
-  socket.emit({ users: users });
+  socket.emit('messages', { messages: messages });
   socket.on('login', function (data) {
     users.push(data.login);
+    socket.broadcast.emit('users', users);
   });
 });
 

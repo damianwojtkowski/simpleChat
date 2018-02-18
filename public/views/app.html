@@ -1,0 +1,8 @@
+<main ng-if="!chat.isLogged" class="login-container">
+  <form ng-submit="chat.login()" class="login">
+    <h3>Type your nickname</h3>
+    <input type="text" ng-model="chat.loginName" class="login__input" autofocus/>
+  </form>
+</main>
+<main ng-if="chat.isLogged" ng-include="'views/chat.html'">
+</main>
