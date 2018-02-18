@@ -5,7 +5,6 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var users = [];
-var messages = [];
 
 app.use(express.static(__dirname + '/public'));
 
@@ -14,10 +13,10 @@ app.get('/', function (req, res) {
 });
 
 io.on('connection', function (socket) {
-  socket.emit('messages', { messages: messages });
-  socket.on('login', function (data) {
+  socket.on('init', function (data) {
+    socket.emit('init', users);
     users.push(data.login);
-    socket.broadcast.emit('users', users);
+    socket.broadcast.emit('newUser', data.login);
   });
 });
 

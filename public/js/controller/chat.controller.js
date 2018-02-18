@@ -5,14 +5,19 @@
     
     vm.isLogged = false;
 
-    socketFactory.on('users', function (data) {
-      vm.users = data;
-    });
-
     vm.login = function () {
-      socketFactory.emit('login', { login: vm.loginName });
-      vm.users.push(vm.loginName);
+      socketFactory.emit('init', { login: vm.loginName });
       vm.isLogged = true;
     };
+
+    socketFactory.on('newUser', function (data) {
+      vm.users.push(data);
+    });
+
+    socketFactory.on('init', function (data) {
+      vm.users = data;
+      vm.users.push(vm.loginName);
+    });
+
   });
 })(app);
