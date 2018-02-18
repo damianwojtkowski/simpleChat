@@ -17,6 +17,7 @@ io.on('connection', function (socket) {
     socket.emit('init', users);
     users.push(data.login);
     socket.broadcast.emit('newUser', data.login);
+    console.log(users);
   });
 });
 
