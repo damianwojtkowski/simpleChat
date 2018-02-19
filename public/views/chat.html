@@ -1,6 +1,6 @@
 <main class="chat-container">
     <main class="users-panel">
-        <span class="users-panel__title">Users</span>
+        <span class="users-panel__title">Users:</span>
         <ul>
             <li ng-repeat="user in chat.users" class="users-panel__user">
                 {{ user }}
@@ -16,6 +16,7 @@
             </ul>
         </main>
         <form ng-submit="chat.addMessage()">
+            <span>$</span>
             <input type="text" ng-model="chat.newMessage" class="chat-content__new-message" />
         </form>
     </main>

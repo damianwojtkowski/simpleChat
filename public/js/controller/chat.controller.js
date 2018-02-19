@@ -21,6 +21,7 @@
 
     socketFactory.on('newUser', function (data) {
       vm.users.push(data);
+      vm.messages.push({ user: 'System', message: 'User ' + data + ' has joined' });
     });
 
     socketFactory.on('init', function (data) {
@@ -30,7 +31,11 @@
 
     socketFactory.on('newMessage', function (data) {
       vm.messages.push(data);
-    })
+    });
 
+    socketFactory.on('userDisconnected', function (data) {
+        vm.users.splice(vm.users.indexOf(data), 1);
+        vm.messages.push({ user: 'System', message: 'User ' + data + ' has left' });
+    });
   });
 })(app);
